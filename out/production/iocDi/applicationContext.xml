@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="firstDemo" class="cn.pwc.demo.FirstDemo">
+        <property name="name" value="第一个demoName"/>
+        <property name="td" ref="thirdDemo"/>
+    </bean>
+
+    <bean id="secondDemo" class="cn.pwc.demo.SecondDemo">
+        <property name="name" value="第二个demoName"/>
+    </bean>
+
+    <bean id="thirdDemo" class="cn.pwc.demo.ThirdDemo">
+        <property name="name" value="第三个demoName"/>
+    </bean>
+
+</beans>

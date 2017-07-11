@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="firstDemo" class="cn.pwc.demo.FirstDemo" init-method="myInit" destroy-method="myDestroy">
+        <property name="name" value="给firstDemo的值"/>
+    </bean>
+
+    <bean id="beanPost" class="cn.pwc.demo.MyBeanPostProcessor"/>
+
+    <!--为了不影响生命周期的验证我们可以先注释掉，以免扰乱我们的视线-->
+    <!--<bean id="secondDemo" class="cn.pwc.demo.SecondDemo">-->
+        <!--<property name="secondDemo" value="我是第二个demo"/>-->
+    <!--</bean>-->
+
+</beans>

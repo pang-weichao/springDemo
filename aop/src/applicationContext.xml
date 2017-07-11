@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--配置被代理对象-->
+    <bean id="firstDemo" class="cn.pwc.demo.FirstDemo">
+        <property name="name" value="xiaomao"/>
+    </bean>
+
+    <!--配置前置通知-->
+    <bean id="myMethodBeforeAdvice" class="cn.pwc.demo.MyMethodBeforeAdvice"/>
+
+    <!--配置后置通知-->
+    <bean id="myMethodAfterAdvice" class="cn.pwc.demo.MyMethodAfterAdvice"/>
+
+    <!--配置环绕通知-->
+    <bean id="myMethodInterceptor" class="cn.pwc.demo.MyMethodInterceptor"/>
+
+    <!--配置异常通知-->
+    <bean id="myMethodThrowAdvice" class="cn.pwc.demo.MyMethodThrowAdvice"/>
+
+    <!--定义切入点-->
+    <bean id="before" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+        <property name="advice" ref="myMethodBeforeAdvice"/>
+        <property name="mappedNames">
+            <list>
+                <value>printName</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--配置代理对象-->
+    <bean id="proxyFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--代理接口集-->
+        <property name="proxyInterfaces">
+            <list>
+                <value>cn.pwc.demo.NameDemo</value>
+                <value>cn.pwc.demo.AgeDemo</value>
+            </list>
+        </property>
+        <!--通知名集-->
+        <property name="interceptorNames">
+            <list>
+                <value>before</value>
+                <value>myMethodAfterAdvice</value>
+                <value>myMethodThrowAdvice</value>
+                <value>myMethodInterceptor</value>
+            </list>
+        </property>
+        <!--代理哪些对象-->
+        <property name="target" ref="firstDemo"/>
+    </bean>
+
+</beans>
